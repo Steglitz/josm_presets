@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <presets
     xmlns="http://josm.openstreetmap.de/tagging-preset-1.0"
-    version="2025-04-19.02"
+    version="2025-04-19.03"
     author="Steglitz"
     icon="img/street_lamp.svg"
     description="Street lamps and public lighting."
@@ -12,21 +12,63 @@
         <link wiki="Tag:highway=street_lamp" />
         <space />
         <key key="highway" value="street_lamp" />
-        <!-- Lamp Attributes -->
-        <combo key="lamp_type" text="Lamp Type"
-               values="electric,LED,incandescent,halogen,gas,floodlight,sodium,solar_lamp"
-               values_context="lamp_type" match="key" />
-        <combo key="light:count" text="Light Count"
-               values=""
-               values_context="lamp:count"  match="key"/>
-        <combo key="light:lit" text="Illumination times"
-               values="24/7, dusk-dawn, motion, demand"
-               values_context="lamp:lit"  match="key">
-        </combo>
-        <text key="height" text="Height (meters)" />
-        <text key="ref" text="Reference ID" />
+
+    <!-- Lamp Attributes -->
+
+    <!-- Lamp Types -->
+    <combo key="lamp_type" text="Lamp Type"
+           values="led,incandescent,halogen,gaslight,sodium,solar_lamp"
+           values_context="lamp_type" match="key" />
+
+    <!-- Light Shape -->
+    <combo key="light:shape" text="Light Shape"
+           values_context="light:shape" match="key">
+        <list_entry value="directed" display_value="Directed"
+                    short_description="Emits light in a specific direction" />
+        <list_entry value="spherical" display_value="Spherical"
+                    short_description="A sphere that emits light in all directions (usually implies absence of light:direction" />
+        <list_entry value="cylindrical" display_value="Cylindrical"
+                    short_description="A lamp that shines light in all horizontal directions" />
+    </combo>
+
+    <!-- Light:direction -->
+    <combo key="direction" text="Direction (Horizontal)"
+           values="N,E,S,W,0,90,180,270,forward,backward"
+           short_description="Numerical map direction, assuming there's a single light (0=north, 90=east, etc.) the light points to. If there are 2 lamps on the one pole, they can be tagged as e.g. 70;250 "
+           values_sort="false" />
+
+    <!-- Lamp Tilt -->
+    <text key="light:tilt"
+          text="Direction (Vertical)"
+          short_description="The tilt of the light (-90 means the light is facing the ground." />
+
+    <!-- Lamp count -->
+    <combo key="light:count" text="Light Count"
+           values=""
+           values_context="lamp:count"  match="key"/>
+
+    <!-- Illumination time/method -->
+    <combo key="light:lit" text="Illumination times"
+           values="24/7, dusk-dawn, motion, demand"
+           values_context="lamp:lit"  match="key">
+        <list_entry value="24/7" display_value="24/7"
+                    short_description="" />
+        <list_entry value="dusk-dawn" display_value="Dusk-dawn"
+                    short_description="Automatic based on clock or outdoor brightness sensed at some central location" />
+        <list_entry value="motion" display_value="motion"
+                    short_description="Controlled by a motion sensor" />
+        <list_entry value="demand" display_value="Manually Operated"
+                    short_description="Manually operated." />
+        <list_entry value="opening_hours" display_value="Custom"
+                    short_description="Use opening Hours syntax for custom lighting times." />
+    </combo>
+
+    <!-- Lamp Height -->
+    <text key="height" text="Height (meters)" />
 
     <!-- Support Structures and Shape -->
+
+    <!-- Support -->
     <combo key="support" text="Support Type"
            values_context="support" match="key" >
         <list_entry value="pole" display_value="Pole"
@@ -44,6 +86,8 @@
         <list_entry value="pedestal" display_value="Pedestal"
                     short_description="Something like a bollard, rarely larger than 1.5 meter." />
     </combo>
+
+    <!-- Lamp Mount -->
     <combo key="lamp_mount" text="Mounted on"
            values_context="lamp_mount" match="key">
         <list_entry value="straight_mast" display_value="Straight Mast"
@@ -59,5 +103,7 @@
         <list_entry value="wall" display_value="Wall"
                     short_description="The light is attached to a wall." />
     </combo>
-    <text key="light:tilt" text="The tilt of the light (-90 means the light is facing the ground." />
+
+    <!-- Reference ID -->
+    <text key="ref" text="Reference ID" />
 </presets>
