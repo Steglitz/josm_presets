@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <presets
     xmlns="http://josm.openstreetmap.de/tagging-preset-1.0"
-    version="2025-04-19.01"
+    version="2025-04-19.02"
     author="Steglitz"
-    link=""
-    icon="https://wiki.openstreetmap.org/w/images/a/a4/Highway_street_lamp.svg"
+    icon="img/street_lamp.svg"
     description="Street lamps and public lighting."
     shortdescription="Street Lighting"
 >
 
-    <item name="Street Lamp" icon="presets/misc/streetlamp.svg" type="node" preset_name_label="true">
+    <combo name="Street Lamp" icon="img/street_lamp.svg" type="node" preset_name_label="true">
         <link wiki="Tag:highway=street_lamp" />
         <space />
         <key key="highway" value="street_lamp" />
         <!-- Lamp Attributes -->
         <combo key="lamp_type" text="Lamp Type"
-               values="electric,LED, incandescent, halogen, gas,floodlight,sodium,solar_lamp"
+               values="electric,LED,incandescent,halogen,gas,floodlight,sodium,solar_lamp"
                values_context="lamp_type" match="key" />
         <combo key="light:count" text="Light Count"
                values=""
@@ -29,10 +28,23 @@
 
         <!-- Support Structures and Shape -->
         <combo key="support" text="Support Type"
-               values="pole, wall, wall_mounted, wire, ground, ceiling"
-               values_context="support" match="key" />
+               values_context="support" match="key" >
+            <list_entry value="pole" display_value="Pole"
+                        short_description="Most commonly a wooden/metal pole, almost always higher than 2 meters." />
+            <list_entry value="wall" display_value="Wall"
+                        short_description="Direct attachment to a wall." />
+            <list_entry value="wall_mounted" display_value="Wall Mounted"
+                        short_description="Attached to a wall by way of a metal bar (or other construction)." />
+            <list_entry value="wire" display_value="Wire"
+                        short_description="Suspended over the road etc. and held by wires/cables, the latter of which are attached somewhere (poles/walls)." />
+            <list_entry value="ground" display_value="Ground"
+                        short_description="TThe lamp is in a fixture installed right in the ground (common locations: event venues or parks)." />
+            <list_entry value="ceiling" display_value="Ceiling"
+                        short_description="Direct attachment to a ceiling (common locations: tunnels)." />
+            <list_entry value="pedestal" display_value="Pedestal"
+                        short_description="Something like a bollard, rarely larger than 1.5 meter."
+        </combo>
         <combo key="lamp_mount" text="Mounted on"
-               values="bent_mast,straight_mast,angled_mast,high_mast, suspended,wall"
                values_context="lamp_mount" match="key">
             <list_entry value="straight_mast" display_value="Straight Mast"
                         short_description="The light sits atop a (straight) mast." />
@@ -47,8 +59,6 @@
             <list_entry value="wall" display_value="Wall"
                         short_description="The light is attached to a wall." />
         </combo>
-        <combo key="light:tilt" text="Light Tilt"
-               values=""
-               values_context="lamp:tilt"  match="key"/>
+        <text key="light:tilt" text="The tilt of the light (-90 means the light is facing the ground." />
     </item> <!-- Street Lamp -->
 </presets>
