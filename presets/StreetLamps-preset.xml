@@ -59,6 +59,7 @@
             <text key="height" text="Height (meters)" />
 
             <!-- Support Structures and Shape -->
+            <space />
             <label text="Lamp Support and Mounting" />
             <!-- Support -->
             <combo key="support" text="Support Type"
