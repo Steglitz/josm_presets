@@ -7,16 +7,17 @@
     shortdescription="Street Lighting">
 
     <group name="street_lamps" icon="img/street_lamp.svg">
-        <item name="Street Lamps" icon="img/street_lamp.svg" type="node" preset_name_label="true">
+        <item name="Street Lamps" icon="presets/misc/streetlamp.svg" type="node" preset_name_label="true">
             <link wiki="Tag:highway=street_lamp" />
             <space />
             <key key="highway" value="street_lamp" />
 
             <!-- Lamp Attributes -->
+            <label text="Lamp Specific Attributes" />
             <!-- Lamp Types -->
             <combo key="lamp_type" text="Lamp Type"
-                   values="led,incandescent,halogen,gaslight,sodium,solar_lamp"
-                   values_context="lamp_type" match="key" />
+                   values="led,incandescent,halogen,sodium,gaslight,solar_lamp"
+                   values_context="lamp_type" match="key" values_sort="false"/>
 
             <!-- Light Shape -->
             <combo key="light:shape" text="Light Shape"
@@ -30,15 +31,12 @@
             </combo>
 
             <!-- Light:direction -->
-            <label text="Numerical map direction the light is pointing towards (0=north, 90=east,
-            etc.). If there are 2 lamps on the one pole, use semicolons (e.g. direction=70;250)" />
-            <combo key="direction" text="Direction (Horizontal)"
-                   values="N,E,S,W,0,90,180,270,forward,backward"
-                   values_sort="false" />
+            <text key="direction" text="Direction (Compass Direction)"
+                  short_description="The numerical map direction the light is pointing (0=north, 90=east, etc.). Use semicolons for multiple lamps (e.g. direction=70;250)"/>
 
             <!-- Lamp Tilt -->
             <text key="light:tilt"
-                  text="Direction (Vertical)"
+                  text="Vertical tilt (-90 to 90)"
                   short_description="The vertical tilt of the light (e.g., -90 means the light is facing the ground, 0 is facing outward.)" />
 
             <!-- Lamp count -->
@@ -49,11 +47,11 @@
                    values_context="lamp:lit"  match="key">
                 <list_entry value="24/7" display_value="24/7"
                             short_description="" />
-                <list_entry value="dusk-dawn" display_value="Dusk-dawn"
+                <list_entry value="dusk-dawn" display_value="From dusk till dawn"
                             short_description="Automatic based on clock or outdoor brightness sensed at some central location." />
-                <list_entry value="motion" display_value="motion"
+                <list_entry value="motion" display_value="Motion based"
                             short_description="Controlled by a motion sensor" />
-                <list_entry value="demand" display_value="Manually Operated"
+                <list_entry value="demand" display_value="Manually operated"
                             short_description="Manually operated." />
             </combo>
 
@@ -61,21 +59,22 @@
             <text key="height" text="Height (meters)" />
 
             <!-- Support Structures and Shape -->
-
+            <label text="Lamp Support and Mounting" />
             <!-- Support -->
             <combo key="support" text="Support Type"
                    values_context="support" match="key" >
                 <list_entry value="pole" display_value="Pole"
                             short_description="Most commonly a wooden/metal pole, almost always higher than 2 meters." />
-                <list_entry value="wall" display_value="Wall"
+                <list_entry value="wall" display_value="Wall (Directly attached without mount)"
                             short_description="Direct attachment to a wall." />
-                <list_entry value="wall_mounted" display_value="Wall Mounted"
+                <list_entry value="wall_mounted"
+                            display_value="Wall Mounted (with metal bar or other mount)"
                             short_description="Attached to a wall by way of a metal bar (or other construction)." />
                 <list_entry value="wire" display_value="Wire"
                             short_description="Suspended over the road etc. and held by wires/cables, the latter of which are attached somewhere (poles/walls)." />
-                <list_entry value="ground" display_value="Ground"
+                <list_entry value="ground" display_value="Ground (e.g., event venues or parks)"
                             short_description="The lamp is in a fixture installed right in the ground (common locations: event venues or parks)." />
-                <list_entry value="ceiling" display_value="Ceiling"
+                <list_entry value="ceiling" display_value="Ceiling (e.g., tunnels or building entrances"
                             short_description="Direct attachment to a ceiling (common locations: tunnels)." />
                 <list_entry value="pedestal" display_value="Pedestal"
                             short_description="Something like a bollard, rarely larger than 1.5 meter." />
@@ -88,9 +87,9 @@
                             short_description="The light sits atop a (straight) mast." />
                 <list_entry value="bent_mast" display_value="Bent Mast"
                             short_description="The light is at the end of a bent mast." />
-                <list_entry value="angled_mast" display_value="Angled Mast"
+                <list_entry value="angled_mast" display_value="Angled Mast (usually 90°)"
                             short_description="A pole that starts out straight but then is (usually 90°) angled." />
-                <list_entry value="high_mast" display_value="High Mast"
+                <list_entry value="high_mast" display_value="High Mast (greater than 30m)"
                             short_description="A tall pole (greater than 30 m) with lighting mounted at the top." />
                 <list_entry value="suspended" display_value="Suspended"
                             short_description="The light is suspended over the street by a wire." />
