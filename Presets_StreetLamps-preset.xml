@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<presets
+    xmlns="http://josm.openstreetmap.de/tagging-preset-1.0"
+    version="2025-04-19.01"
+    author="Steglitz"
+    link=""
+    icon="https://wiki.openstreetmap.org/w/images/a/a4/Highway_street_lamp.svg"
+    description="Street lamps and public lighting."
+    shortdescription="Street Lighting"
+>
+
+    <item name="Street Lamp" icon="presets/misc/streetlamp.svg" type="node" preset_name_label="true">
+        <link wiki="Tag:highway=street_lamp" />
+        <space />
+        <key key="highway" value="street_lamp" />
+        <!-- Lamp Attributes -->
+        <combo key="lamp_type" text="Lamp Type"
+               values="electric,LED, incandescent, halogen, gas,floodlight,sodium,solar_lamp"
+               values_context="lamp_type" match="key" />
+        <combo key="light:count" text="Light Count"
+               values=""
+               values_context="lamp:count"  match="key"/>
+        <combo key="light:lit" text="Illumination times"
+               values="24/7, dusk-dawn, motion, demand"
+               values_context="lamp:lit"  match="key">
+        </combo>
+        <text key="height" text="Height (meters)" />
+        <text key="ref" text="Reference ID" />
+
+        <!-- Support Structures and Shape -->
+        <combo key="support" text="Support Type"
+               values="pole, wall, wall_mounted, wire, ground, ceiling"
+               values_context="support" match="key" />
+        <combo key="lamp_mount" text="Mounted on"
+               values="bent_mast,straight_mast,angled_mast,high_mast, suspended,wall"
+               values_context="lamp_mount" match="key">
+            <list_entry value="straight_mast" display_value="Straight Mast"
+                        short_description="The light sits atop a (straight) mast." />
+            <list_entry value="bent_mast" display_value="Bent Mast"
+                        short_description="The light is at the end of a bent mast." />
+            <list_entry value="angled_mast" display_value="Angled Mast"
+                        short_description="A pole that starts out straight but then is (usually 90°) angled." />
+            <list_entry value="high_mast" display_value="High Mast"
+                        short_description="A tall pole (greater than 30 m) with lighting mounted at the top." />
+            <list_entry value="suspended" display_value="Suspended"
+                        short_description="The light is suspended over the street by a wire." />
+            <list_entry value="wall" display_value="Wall"
+                        short_description="The light is attached to a wall." />
+        </combo>
+        <combo key="light:tilt" text="Light Tilt"
+               values=""
+               values_context="lamp:tilt"  match="key"/>
+    </item> <!-- Street Lamp -->
+</presets>
