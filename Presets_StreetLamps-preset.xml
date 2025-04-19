@@ -26,39 +26,38 @@
         <text key="height" text="Height (meters)" />
         <text key="ref" text="Reference ID" />
 
-        <!-- Support Structures and Shape -->
-        <combo key="support" text="Support Type"
-               values_context="support" match="key" >
-            <list_entry value="pole" display_value="Pole"
-                        short_description="Most commonly a wooden/metal pole, almost always higher than 2 meters." />
-            <list_entry value="wall" display_value="Wall"
-                        short_description="Direct attachment to a wall." />
-            <list_entry value="wall_mounted" display_value="Wall Mounted"
-                        short_description="Attached to a wall by way of a metal bar (or other construction)." />
-            <list_entry value="wire" display_value="Wire"
-                        short_description="Suspended over the road etc. and held by wires/cables, the latter of which are attached somewhere (poles/walls)." />
-            <list_entry value="ground" display_value="Ground"
-                        short_description="TThe lamp is in a fixture installed right in the ground (common locations: event venues or parks)." />
-            <list_entry value="ceiling" display_value="Ceiling"
-                        short_description="Direct attachment to a ceiling (common locations: tunnels)." />
-            <list_entry value="pedestal" display_value="Pedestal"
-                        short_description="Something like a bollard, rarely larger than 1.5 meter."
-        </combo>
-        <combo key="lamp_mount" text="Mounted on"
-               values_context="lamp_mount" match="key">
-            <list_entry value="straight_mast" display_value="Straight Mast"
-                        short_description="The light sits atop a (straight) mast." />
-            <list_entry value="bent_mast" display_value="Bent Mast"
-                        short_description="The light is at the end of a bent mast." />
-            <list_entry value="angled_mast" display_value="Angled Mast"
-                        short_description="A pole that starts out straight but then is (usually 90°) angled." />
-            <list_entry value="high_mast" display_value="High Mast"
-                        short_description="A tall pole (greater than 30 m) with lighting mounted at the top." />
-            <list_entry value="suspended" display_value="Suspended"
-                        short_description="The light is suspended over the street by a wire." />
-            <list_entry value="wall" display_value="Wall"
-                        short_description="The light is attached to a wall." />
-        </combo>
-        <text key="light:tilt" text="The tilt of the light (-90 means the light is facing the ground." />
-    </item> <!-- Street Lamp -->
+    <!-- Support Structures and Shape -->
+    <combo key="support" text="Support Type"
+           values_context="support" match="key" >
+        <list_entry value="pole" display_value="Pole"
+                    short_description="Most commonly a wooden/metal pole, almost always higher than 2 meters." />
+        <list_entry value="wall" display_value="Wall"
+                    short_description="Direct attachment to a wall." />
+        <list_entry value="wall_mounted" display_value="Wall Mounted"
+                    short_description="Attached to a wall by way of a metal bar (or other construction)." />
+        <list_entry value="wire" display_value="Wire"
+                    short_description="Suspended over the road etc. and held by wires/cables, the latter of which are attached somewhere (poles/walls)." />
+        <list_entry value="ground" display_value="Ground"
+                    short_description="TThe lamp is in a fixture installed right in the ground (common locations: event venues or parks)." />
+        <list_entry value="ceiling" display_value="Ceiling"
+                    short_description="Direct attachment to a ceiling (common locations: tunnels)." />
+        <list_entry value="pedestal" display_value="Pedestal"
+                    short_description="Something like a bollard, rarely larger than 1.5 meter." />
+    </combo>
+    <combo key="lamp_mount" text="Mounted on"
+           values_context="lamp_mount" match="key">
+        <list_entry value="straight_mast" display_value="Straight Mast"
+                    short_description="The light sits atop a (straight) mast." />
+        <list_entry value="bent_mast" display_value="Bent Mast"
+                    short_description="The light is at the end of a bent mast." />
+        <list_entry value="angled_mast" display_value="Angled Mast"
+                    short_description="A pole that starts out straight but then is (usually 90°) angled." />
+        <list_entry value="high_mast" display_value="High Mast"
+                    short_description="A tall pole (greater than 30 m) with lighting mounted at the top." />
+        <list_entry value="suspended" display_value="Suspended"
+                    short_description="The light is suspended over the street by a wire." />
+        <list_entry value="wall" display_value="Wall"
+                    short_description="The light is attached to a wall." />
+    </combo>
+    <text key="light:tilt" text="The tilt of the light (-90 means the light is facing the ground." />
 </presets>
