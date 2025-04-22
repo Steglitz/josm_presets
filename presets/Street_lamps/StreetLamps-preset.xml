@@ -32,9 +32,9 @@
 
             <!-- Light:direction -->
             <combo key="direction" text="Direction (Compass Direction)"
-                   values="north,east,south,west,0,45,90,135,180,225,270,315"
                    inputType="direction"
-                   short_description="The numerical map direction the light is pointing (0=north, 90=east, etc.). Use semicolons for multiple lamps (e.g. direction=70;250)"/>
+                   short_description="The numerical map direction the light is pointing (0=north, 90=east, etc.). Use semicolons for multiple lamps (e.g. direction=70;250)"
+                   values_sort="false"/>
 
             <!-- Lamp Tilt -->
             <text key="light:tilt"
