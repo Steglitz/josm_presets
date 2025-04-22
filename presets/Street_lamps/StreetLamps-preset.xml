@@ -104,27 +104,27 @@
                 <list_entry value="straight_mast" display_value="Straight Mast"
                             short_description="The light sits atop a (straight) mast."
                             icon="https://github.com/Steglitz/josm_presets/blob/vespucci/presets/Street_lamps/img/straight_mast.png"
-                            icon_size="30"/>
+                            />
                 <list_entry value="bent_mast" display_value="Bent Mast"
                             short_description="The light is at the end of a bent mast."
                             icon="https://github.com/Steglitz/josm_presets/blob/vespucci/presets/Street_lamps/img/bent_mast.png"
-                            icon_size="30"/>
+                            />
                 <list_entry value="angled_mast" display_value="Angled Mast (usually 90°)"
                             short_description="A pole that starts out straight but then is (usually 90°) angled."
                             icon="https://github.com/Steglitz/josm_presets/blob/vespucci/presets/Street_lamps/img/angled_mast.png"
-                            icon_size="30"/>
+                            />
                 <list_entry value="high_mast" display_value="High Mast (greater than 30m)"
                             short_description="A tall pole (greater than 30 m) with lighting mounted at the top."
                             icon="https://github.com/Steglitz/josm_presets/blob/vespucci/presets/Street_lamps/img/high_mast.png"
-                            icon_size="30"/>
+                            />
                 <list_entry value="suspended" display_value="Suspended"
                             short_description="The light is suspended over the street by a wire."
                             icon="https://github.com/Steglitz/josm_presets/blob/vespucci/presets/Street_lamps/img/suspended_light.png"
-                            icon_size="30"/>
+                            />
                 <list_entry value="wall" display_value="Wall"
                             short_description="The light is attached to a wall."
                             icon="https://github.com/Steglitz/josm_presets/blob/vespucci/presets/Street_lamps/img/wall_mounted_light.png"
-                            icon_size="30"/>
+                            />
             </combo>
 
             <!-- Extra Tags -->
