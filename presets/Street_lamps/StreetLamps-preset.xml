@@ -40,7 +40,7 @@
                   short_description="The vertical tilt of the light (e.g., -90 means the light is facing the ground, 0 is facing outward.)" />
 
             <!-- Lamp count -->
-            <text key="light:count" text="Light Count" type="count"/>
+            <text key="light:count" text="Light Count" value_type="integer"/>
 
             <!-- Illumination time/method -->
             <combo key="light:lit" text="Illumination times"
