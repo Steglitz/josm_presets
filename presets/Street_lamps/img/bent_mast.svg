@@ -1,0 +1,13 @@
+<svg width="250" height="300" viewBox="0 0 250 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer stroke (white) -->
+  <path d="M100 300 L100 120 Q100 70 200 50" stroke="white" stroke-width="7" fill="none"></path>
+
+  <!-- Inner post (black) -->
+  <path d="M100 300 L100 120 Q100 70 200 50" stroke="black" stroke-width="6" fill="none"></path>
+
+  <!-- Lamp head (black with white outline) -->
+  <circle cx="200" cy="50" r="10" fill="black" stroke="white" stroke-width="0.5"></circle>
+
+  <!-- Lamp glow - bottom half yellow with white outline -->
+  <path d="M190 50 A10 10 0 0 0 210 50 Z" fill="yellow" stroke="white" stroke-width="0.5"></path>
+</svg>

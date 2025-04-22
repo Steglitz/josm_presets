@@ -1,0 +1,20 @@
+<svg width="250" height="300" viewBox="0 0 250 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Rounded cap on top of the post -->
+  <circle cx="100" cy="110" r="3" fill="black" stroke="white" stroke-width="0.5"></circle>
+
+  <!-- Outer stroke (white) for vertical mast -->
+  <path d="M100 300 L100 110" stroke="white" stroke-width="7" fill="none"></path>
+  <!-- Inner vertical mast (black) -->
+  <path d="M100 300 L100 110" stroke="black" stroke-width="6" fill="none"></path>
+
+  <!-- Outer stroke (white) for horizontal arm -->
+  <path d="M103 120 L200 120" stroke="white" stroke-width="7" fill="none"></path>
+  <!-- Inner horizontal arm (black) -->
+  <path d="M103 120 L200 120" stroke="black" stroke-width="6" fill="none"></path>
+
+  <!-- Lamp head (black with white outline) -->
+  <circle cx="200" cy="120" r="10" fill="black" stroke="white" stroke-width="0.5"></circle>
+
+  <!-- Lamp glow - bottom half yellow with white outline -->
+  <path d="M190 120 A10 10 0 0 0 210 120 Z" fill="yellow" stroke="white" stroke-width="0.5"></path>
+</svg>

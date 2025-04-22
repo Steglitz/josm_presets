@@ -1,0 +1,31 @@
+<svg width="300" height="400" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Rounded top cap -->
+  <circle cx="150" cy="90" r="3" fill="black" stroke="white" stroke-width="0.5"></circle>
+
+  <!-- Outer stroke (white) for vertical mast -->
+  <path d="M150 400 L150 90" stroke="white" stroke-width="7" fill="none"></path>
+  <!-- Inner vertical mast (black) -->
+  <path d="M150 400 L150 90" stroke="black" stroke-width="6" fill="none"></path>
+
+  <!-- Outer stroke (white) for horizontal arm -->
+  <path d="M120 100 L180 100" stroke="white" stroke-width="7" fill="none"></path>
+  <!-- Inner horizontal arm (black) -->
+  <path d="M120 100 L180 100" stroke="black" stroke-width="6" fill="none"></path>
+
+  <!-- Cluster of 4 lamps -->
+  <!-- Left lamp -->
+  <circle cx="125" cy="100" r="6" fill="black" stroke="white" stroke-width="0.5"></circle>
+  <path d="M119 100 A6 6 0 0 0 131 100 Z" fill="yellow" stroke="white" stroke-width="0.5"></path>
+
+  <!-- Left-center lamp -->
+  <circle cx="140" cy="100" r="6" fill="black" stroke="white" stroke-width="0.5"></circle>
+  <path d="M134 100 A6 6 0 0 0 146 100 Z" fill="yellow" stroke="white" stroke-width="0.5"></path>
+
+  <!-- Right-center lamp -->
+  <circle cx="160" cy="100" r="6" fill="black" stroke="white" stroke-width="0.5"></circle>
+  <path d="M154 100 A6 6 0 0 0 166 100 Z" fill="yellow" stroke="white" stroke-width="0.5"></path>
+
+  <!-- Right lamp -->
+  <circle cx="175" cy="100" r="6" fill="black" stroke="white" stroke-width="0.5"></circle>
+  <path d="M169 100 A6 6 0 0 0 181 100 Z" fill="yellow" stroke="white" stroke-width="0.5"></path>
+</svg>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <presets
     xmlns="http://josm.openstreetmap.de/tagging-preset-1.0"
-    version="2025-04-19.05"
+    version="2025-04-22.01"
     author="Steglitz"
     description="Street lamps and public lighting."
     shortdescription="Street Lighting">
 
     <group name="street_lamps" icon="img/street_lamp.svg">
         <item name="Street Lamps" icon="img/street_lamp.svg" type="node" preset_name_label="true">
-            <link wiki="Tag:highway=street_lamp" />
+            <link href="https://wiki.openstreetmap.org/wiki/Tag:highway%3Dstreet_lamp" />
             <space />
             <key key="highway" value="street_lamp" />
 
@@ -31,8 +31,9 @@
             </combo>
 
             <!-- Light:direction -->
-            <text key="direction" text="Direction (Compass Direction)"
-                  short_description="The numerical map direction the light is pointing (0=north, 90=east, etc.). Use semicolons for multiple lamps (e.g. direction=70;250)"/>
+            <combo key="direction" text="Direction (Compass Direction)"
+                   values="north,east,south,west,forward,backward,0,45,90,135,180,225,270,315"
+                   short_description="The numerical map direction the light is pointing (0=north, 90=east, etc.). Use semicolons for multiple lamps (e.g. direction=70;250)"/>
 
             <!-- Lamp Tilt -->
             <text key="light:tilt"
@@ -40,7 +41,7 @@
                   short_description="The vertical tilt of the light (e.g., -90 means the light is facing the ground, 0 is facing outward.)" />
 
             <!-- Lamp count -->
-            <text key="light:count" text="Light Count"/>
+            <text key="light:count" text="Light Count" type="count"/>
 
             <!-- Illumination time/method -->
             <combo key="light:lit" text="Illumination times"
@@ -62,6 +63,7 @@
             <space />
             <label text="Lamp Support and Mounting" />
             <!-- Support -->
+            <link href="https://wiki.openstreetmap.org/wiki/Key:support"/>
             <combo key="support" text="Support Type"
                    values_context="support" match="key" values_sort="false">
                 <list_entry value="pole" display_value="Pole"
@@ -82,20 +84,33 @@
             </combo>
 
             <!-- Lamp Mount -->
+            <link href="https://wiki.openstreetmap.org/wiki/Key:lamp_mount"/>
             <combo key="lamp_mount" text="Mounted on"
                    values_context="lamp_mount" match="key" values_sort="false">
                 <list_entry value="straight_mast" display_value="Straight Mast"
-                            short_description="The light sits atop a (straight) mast." />
+                            short_description="The light sits atop a (straight) mast."
+                            icon="img/straight_mast.png"
+                            icon_size="30"/>
                 <list_entry value="bent_mast" display_value="Bent Mast"
-                            short_description="The light is at the end of a bent mast." />
+                            short_description="The light is at the end of a bent mast."
+                            icon="img/bent_mast.png"
+                            icon_size="30"/>
                 <list_entry value="angled_mast" display_value="Angled Mast (usually 90°)"
-                            short_description="A pole that starts out straight but then is (usually 90°) angled." />
+                            short_description="A pole that starts out straight but then is (usually 90°) angled."
+                            icon="img/angled_mast.png"
+                            icon_size="30"/>
                 <list_entry value="high_mast" display_value="High Mast (greater than 30m)"
-                            short_description="A tall pole (greater than 30 m) with lighting mounted at the top." />
+                            short_description="A tall pole (greater than 30 m) with lighting mounted at the top."
+                            icon="img/high_mast.png"
+                            icon_size="30"/>
                 <list_entry value="suspended" display_value="Suspended"
-                            short_description="The light is suspended over the street by a wire." />
+                            short_description="The light is suspended over the street by a wire."
+                            icon="img/suspended_light.png"
+                            icon_size="30"/>
                 <list_entry value="wall" display_value="Wall"
-                            short_description="The light is attached to a wall." />
+                            short_description="The light is attached to a wall."
+                            icon="img/wall_mounted_light.png"
+                            icon_size="30"/>
             </combo>
 
             <!-- Extra Tags -->
