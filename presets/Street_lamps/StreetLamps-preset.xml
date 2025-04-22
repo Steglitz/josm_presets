@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <presets
     xmlns="http://josm.openstreetmap.de/tagging-preset-1.0"
-    version="2025-04-22.01"
+    version="2025-04-22.02"
     author="Steglitz"
     description="Street lamps and public lighting."
     shortdescription="Street Lighting">
@@ -32,9 +32,7 @@
 
             <!-- Light:direction -->
             <combo key="direction" text="Direction (Compass Direction)"
-                   inputType="direction"
-                   short_description="The numerical map direction the light is pointing (0=north, 90=east, etc.). Use semicolons for multiple lamps (e.g. direction=70;250)"
-                   values_sort="false"/>
+                   short_description="The numerical map direction the light is pointing (0=north, 90=east, etc.). Use semicolons for multiple lamps (e.g. direction=70;250)"/>
 
             <!-- Lamp Tilt -->
             <text key="light:tilt"
