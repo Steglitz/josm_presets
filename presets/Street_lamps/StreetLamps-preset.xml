@@ -34,14 +34,24 @@
             </combo>
 
             <!-- Light:direction -->
-            <combo key="direction" text="Lamp Direction (Compass Bearing)"
+            <label text="Lamp Direction (Choose only one)" />
+            <!-- Single Lamp Option with compass selector -->
+            <combo key="direction" text="Lamp Direction (Single Compass Bearing)"
                    short_description="The numerical map direction the light is pointing (0=north, 90=east, etc.). Use semicolons for multiple lamps (e.g. direction=70;250)"
                    values="N,E,S,W,0,90,180,270"
                    display_values="North,East,South,West,0°,90°,180°,270°" values_sort="false" value_type="cardinal_direction"/>
 
+            <!-- Multiple lamps can be added manually. -->
+            <text key="direction"
+                  text="Lamp Directions (Multiple Compass Bearings)"
+                  short_description="Use semicolons, e.g. 45;250"
+                  match="none" />
+
+            <space/>
             <!-- Lamp Tilt -->
             <text key="light:tilt"
-                  text="Lamp Vertical Tilt (-90 to 90)"
+                  text="Vertical Lamp Tilt (-90 to 90)"
+                  inputType="number"
                   short_description="The vertical tilt of the light (e.g., -90 means the light is facing the ground, 0 is facing outward.)" />
 
             <!-- Lamp count -->
