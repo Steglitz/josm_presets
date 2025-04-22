@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <presets
     xmlns="http://josm.openstreetmap.de/tagging-preset-1.0"
-    version="2025-04-22.02"
+    version="2025-04-22.03"
     author="Steglitz"
     description="Street lamps and public lighting."
     shortdescription="Street Lighting">
 
-    <group name="street_lamps" icon="img/street_lamp.svg">
-        <item name="Street Lamps" icon="img/street_lamp.svg" type="node" preset_name_label="true">
+    <group name="street_lamps" icon="https://github.com/Steglitz/josm_presets/blob/vespucci/presets/Street_lamps/img/street_lamp.svg">
+        <item name="Street Lamps" icon="https://github.com/Steglitz/josm_presets/blob/vespucci/presets/Street_lamps/img/street_lamp.svg"
+              type="node"
+              preset_name_label="true">
             <link href="https://wiki.openstreetmap.org/wiki/Tag:highway%3Dstreet_lamp" />
             <space />
             <key key="highway" value="street_lamp" />
@@ -17,10 +19,11 @@
             <!-- Lamp Types -->
             <combo key="lamp_type" text="Lamp Type"
                    values="led,incandescent,halogen,sodium,gaslight,solar_lamp"
+                   display_values="LED,Incandescent,Halogen,Sodium,Gaslight,Solar Lamp"
                    values_context="lamp_type" match="key" values_sort="false"/>
 
             <!-- Light Shape -->
-            <combo key="light:shape" text="Light Shape"
+            <combo key="light:shape" text="Lamp Shape"
                    values_context="light:shape" match="key">
                 <list_entry value="directed" display_value="Directed"
                             short_description="Emits light in a specific direction" />
@@ -31,14 +34,14 @@
             </combo>
 
             <!-- Light:direction -->
-            <combo key="direction" text="Direction (Compass Direction)"
+            <combo key="direction" text="Lamp Direction (Compass Bearing)"
                    short_description="The numerical map direction the light is pointing (0=north, 90=east, etc.). Use semicolons for multiple lamps (e.g. direction=70;250)"
                    values="N,E,S,W,0,90,180,270"
                    display_values="North,East,South,West,0°,90°,180°,270°" values_sort="false" value_type="cardinal_direction"/>
 
             <!-- Lamp Tilt -->
             <text key="light:tilt"
-                  text="Vertical tilt (-90 to 90)"
+                  text="Lamp Vertical Tilt (-90 to 90)"
                   short_description="The vertical tilt of the light (e.g., -90 means the light is facing the ground, 0 is facing outward.)" />
 
             <!-- Lamp count -->
@@ -86,31 +89,31 @@
 
             <!-- Lamp Mount -->
             <link href="https://wiki.openstreetmap.org/wiki/Key:lamp_mount"/>
-            <combo key="lamp_mount" text="Mounted on"
+            <combo key="lamp_mount" text="Mounted on" values_searchable="true" editable="false"
                    values_context="lamp_mount" match="key" values_sort="false">
                 <list_entry value="straight_mast" display_value="Straight Mast"
                             short_description="The light sits atop a (straight) mast."
-                            icon="img/straight_mast.png"
+                            icon="https://github.com/Steglitz/josm_presets/blob/vespucci/presets/Street_lamps/img/straight_mast.png"
                             icon_size="30"/>
                 <list_entry value="bent_mast" display_value="Bent Mast"
                             short_description="The light is at the end of a bent mast."
-                            icon="img/bent_mast.png"
+                            icon="https://github.com/Steglitz/josm_presets/blob/vespucci/presets/Street_lamps/img/bent_mast.png"
                             icon_size="30"/>
                 <list_entry value="angled_mast" display_value="Angled Mast (usually 90°)"
                             short_description="A pole that starts out straight but then is (usually 90°) angled."
-                            icon="img/angled_mast.png"
+                            icon="https://github.com/Steglitz/josm_presets/blob/vespucci/presets/Street_lamps/img/angled_mast.png"
                             icon_size="30"/>
                 <list_entry value="high_mast" display_value="High Mast (greater than 30m)"
                             short_description="A tall pole (greater than 30 m) with lighting mounted at the top."
-                            icon="img/high_mast.png"
+                            icon="https://github.com/Steglitz/josm_presets/blob/vespucci/presets/Street_lamps/img/high_mast.png"
                             icon_size="30"/>
                 <list_entry value="suspended" display_value="Suspended"
                             short_description="The light is suspended over the street by a wire."
-                            icon="img/suspended_light.png"
+                            icon="https://github.com/Steglitz/josm_presets/blob/vespucci/presets/Street_lamps/img/suspended_light.png"
                             icon_size="30"/>
                 <list_entry value="wall" display_value="Wall"
                             short_description="The light is attached to a wall."
-                            icon="img/wall_mounted_light.png"
+                            icon="https://github.com/Steglitz/josm_presets/blob/vespucci/presets/Street_lamps/img/wall_mounted_light.png"
                             icon_size="30"/>
             </combo>
 
