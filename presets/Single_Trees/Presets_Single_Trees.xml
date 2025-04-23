@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<presets
+        xmlns="http://josm.openstreetmap.de/tagging-preset-1.0"
+        version="2025-04-21.01"
+        author="Steglitz"
+        description="Single trees, mapped as nodes."
+        shortdescription="Single Trees">
+
+    <group name="Single Trees" icon="img/street_lamp.svg">
+        <item name="Street Lamps" icon="img/street_lamp.svg" type="node" preset_name_label="true">
+            <link wiki="Tag:natural=tree" />
+            <space />
+            <key key="natural" value="tree" />
+
+            <!-- Measurable Attribues -->
+            <label text="Trunk Measurements" />
+            <!-- Lamp Types -->
+            <text key="circumference" text="Trunk Circumference at 1,3m (in meters)" />
+            <text key="diameter" text="Trunk Diameter at 1,3m (in meters)" />
+            <text key="height" text="Tree height (in meters)" />
+            <text key="est:height" text="Tree height (in meters)" />
+            <combo key="source:height" text="Height Source"
+                   values="survey,lidar,shadow,satellite_imagery,estimated"
+            values_context="source:height" match="key" values_sort="false"/>
+
+            <text key="diameter:crown" text="Crown Diameter" />
+
+            <text key="planted_by" text="Planted byr" />
+            <text key="planted_date" text="Planted Date (YYYY-MM-DD)" />
+            <text key="commemorates" text="Commemorates" />
+
+            <combo key="leaf_cycle" text="Lamp Type"
+                   values="led,incandescent,halogen,sodium,gaslight,solar_lamp"
+                   values_context="lamp_type" match="key" values_sort="false"/>
+
+            <!-- Lamp count -->
+            <text key="light:count" text="Light Count"/>
+            <!-- Support Structures and Shape -->
+            <space />
+            <label text="Lamp Support and Mounting" />
+            <!-- Support -->
+            <combo key="support" text="Support Type"
+                   values_context="support" match="key" values_sort="false">
+                <list_entry value="pole" display_value="Pole"
+                            short_description="Most commonly a wooden/metal pole, almost always higher than 2 meters." />
+                <list_entry value="wall" display_value="Wall (Directly attached without mount)"
+                            short_description="Direct attachment to a wall." />
+                <list_entry value="wall_mounted"
+                            display_value="Wall Mounted (with metal bar or other mount)"
+                            short_description="Attached to a wall by way of a metal bar (or other construction)." />
+                <list_entry value="wire" display_value="Wire"
+                            short_description="Suspended over the road etc. and held by wires/cables, the latter of which are attached somewhere (poles/walls)." />
+                <list_entry value="ceiling" display_value="Ceiling (e.g., tunnels or building entrances"
+                            short_description="Direct attachment to a ceiling (common locations: tunnels)." />
+                <list_entry value="ground" display_value="Ground (e.g., event venues or parks)"
+                            short_description="The lamp is in a fixture installed right in the ground (common locations: event venues or parks)." />
+                <list_entry value="pedestal" display_value="Pedestal"
+                            short_description="Something like a bollard, rarely larger than 1.5 meter." />
+            </combo>
+
+            <!-- Lamp Mount -->
+            <combo key="lamp_mount" text="Mounted on"
+                   values_context="lamp_mount" match="key" values_sort="false">
+                <list_entry value="straight_mast" display_value="Straight Mast"
+                            short_description="The light sits atop a (straight) mast."
+                            icon="img/mast_straight.png"
+                            icon_size="30"/>
+                <list_entry value="bent_mast" display_value="Bent Mast"
+                            short_description="The light is at the end of a bent mast." />
+                <list_entry value="angled_mast" display_value="Angled Mast (usually 90°)"
+                            short_description="A pole that starts out straight but then is (usually 90°) angled." />
+                <list_entry value="high_mast" display_value="High Mast (greater than 30m)"
+                            short_description="A tall pole (greater than 30 m) with lighting mounted at the top." />
+                <list_entry value="suspended" display_value="Suspended"
+                            short_description="The light is suspended over the street by a wire." />
+                <list_entry value="wall" display_value="Wall"
+                            short_description="The light is attached to a wall." />
+            </combo>
+
+            <!-- Extra Tags -->
+            <space />
+            <label text="Reference ID (if present)" />
+            <!-- Reference ID -->
+            <text key="ref" text="Ref ID" />
+        </item>
+    </group>
+
+    <annotations>
+        <group name="Fuss-Rad-Weg" icon="presets/cycleway.png">
+            <item name="Fussweg-Rad (239+Zusatz)" icon="presets/cycleway.png">
+                <label text="Fussweg (Rad frei) bearbeiten"/>
+                <link href="https://wiki.openstreetmap.org/wiki/DE:Bicycle/overview_ways" />
+
+                <label text=" "/>
+                <key key="highway" value="path"/>
+                <key key="foot" value="designated"/>
+                <key key="bicycle" value="yes"/>
+                <label text=" "/>
+                <label text="Optional Attributes:" de.text="Zusatzinformationen:"/>
+                <label text=" "/>
+                <text key="name" text="Name" de.text="Name" default="" />
+                <check key="oneway" text="Oneway" de.text="Einbahn" default="off" />
+                <check key="bridge" text="Bridge" de.text="Brücke" default="off" />
+                <check key="tunnel" text="Tunnel" de.text="Unterführung" default="off" />
+                <check key="cutting" text="Cutting" de.text="Einschnitt" default="off" />
+                <check key="embankment" text="Embankment" de.text="Damm/Rampe" default="off" />
+                <combo key="layer" text="layer" de.text="level" values="5,4,3,2,1,0, -1, -2, -3, -4, -5" default="" />
+                <combo key="surface" text="Surface" de.text="Oberfläche" values="paved,unpaved,cobblestone" default="" />
+                <text key="maxspeed" text="Max. speed (km/h)" de.text="max. speed (km/h)" default="" />
+                <text key="width" text="Width (metres)" de.text="Breite (Meter)" default="" />
+            </item>
+            <item name="Fuss-|Radweg (240)" icon="presets/cycleway.png">
+                <label text="Fuss-|Radweg bearbeiten"/>
+                <link href="https://wiki.openstreetmap.org/wiki/DE:Bicycle/overview_ways" />
+                <label text=" "/>
+                <key key="highway" value="path"/>
+                <key key="foot" value="designated"/>
+                <key key="bicycle" value="designated"/>
+                <key key="segregated" value="no"/>
+                <label text=" "/>
+                <label text="Optional Attributes:" de.text="Zusatzinformationen:"/>
+                <label text=" "/>
+                <text key="name" text="Name" de.text="Name" default="" />
+                <check key="oneway" text="Oneway" de.text="Einbahn" default="off" />
+                <check key="bridge" text="Bridge" de.text="Brücke" default="off" />
+                <check key="tunnel" text="Tunnel" de.text="Unterführung" default="off" />
+                <check key="cutting" text="Cutting" de.text="Einschnitt" default="off" />
+                <check key="embankment" text="Embankment" de.text="Damm/Rampe" default="off" />
+                <combo key="layer" text="layer" de.text="level" values="5,4,3,2,1,0, -1, -2, -3, -4, -5" default="" />
+                <combo key="surface" text="Surface" de.text="Oberfläche" values="paved,unpaved,cobblestone" default="" />
+                <text key="maxspeed" text="Max. speed (km/h)" de.text="max. speed (km/h)" default="" />
+                <text key="width" text="Width (metres)" de.text="Breite (Meter)" default="" />
+            </item>
+            <item name="Rad-|Fussweg (241)" icon="presets/cycleway.png">
+                <label text="Rad-|Fussweg bearbeiten"/>
+                <link href="https://wiki.openstreetmap.org/wiki/DE:Bicycle/overview_ways" />
+                <label text=" "/>
+                <key key="highway" value="path"/>
+                <key key="foot" value="designated"/>
+                <key key="bicycle" value="designated"/>
+                <key key="segregated" value="yes"/>
+                <label text=" "/>
+                <label text="Optional Attributes:" de.text="Zusatzinformationen:" />
+                <label text=" "/>
+                <text key="name" text="Name" de.text="Name" default="" />
+                <check key="oneway" text="Oneway" de.text="Einbahn" default="off" />
+                <check key="bridge" text="Bridge" de.text="Brücke" default="off" />
+                <check key="tunnel" text="Tunnel" de.text="Unterführung" default="off" />
+                <check key="cutting" text="Cutting" de.text="Einschnitt" default="off" />
+                <check key="embankment" text="Embankment" de.text="Damm/Rampe" default="off" />
+                <combo key="layer" text="layer" de.text="level" values="5,4,3,2,1,0, -1, -2, -3, -4, -5" default="" />
+                <combo key="surface" text="Surface" de.text="Oberfläche" values="paved,unpaved,cobblestone" default="" />
+                <text key="maxspeed" text="Max. speed (km/h)" de.text="max. speed (km/h)" default="" />
+                <text key="width" text="Width (metres)" de.text="Breite (Meter)" default="" />
+            </item>
+        </group>
+    </annotations>
+</presets>
