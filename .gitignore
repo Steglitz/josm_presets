@@ -1,2 +1,12 @@
+# Gradle build folders
+/.gradle/
+/build/
+/.classpath
+/.settings/
+/.project
+/gen/
+# Prod gradle.properties file.
+gradle.properties
+
 # Jetbrains Project Files
-.idea/
+.idea
