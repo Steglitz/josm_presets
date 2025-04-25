@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <presets
         xmlns="http://josm.openstreetmap.de/tagging-preset-1.0"
-        version="2025-04-22.04"
+        version="1.0.0"
         author="Steglitz"
         description="Street lamps and public lighting."
         shortdescription="Street Lighting">
 
-    <group name="street_lamps" icon="presets/misc/streetlamp.svg">
-        <item name="Street Lamps" icon="img/street_lamp.svg"
+    <group name="street_lamps" icon="icons/svg/street_lamp.svg">
+        <item name="Street Lamps" icon="icons/svg/street_lamp.svg"
               type="node"
               preset_name_label="true">
             <link href="https://wiki.openstreetmap.org/wiki/Tag:highway%3Dstreet_lamp" />
@@ -98,28 +98,28 @@
                    values_context="lamp_mount" match="key" values_sort="false">
                 <list_entry value="straight_mast" display_value="Straight Mast"
                             short_description="The light sits atop a (straight) mast."
-                            icon="img/straight_mast.svg"
-                            icon_size="24"/>
-                <list_entry value="img/bent_mast" display_value="Bent Mast"
+                            icon="icons/svg/straight_mast.svg"
+                            icon_size="30"/>
+                <list_entry value="icons/svg/bent_mast" display_value="Bent Mast"
                             short_description="The light is at the end of a bent mast."
-                            icon="img/bent_mast.svg"
-                            icon_size="24"/>
+                            icon="icons/svg/bent_mast.svg"
+                            icon_size="30"/>
                 <list_entry value="angled_mast" display_value="Angled Mast (usually 90°)"
                             short_description="A pole that starts out straight but then is (usually 90°) angled."
-                            icon="img/angled_mast.svg"
-                            icon_size="24"/>
+                            icon="icons/svg/angled_mast.svg"
+                            icon_size="30"/>
                 <list_entry value="high_mast" display_value="High Mast (greater than 30m)"
                             short_description="A tall pole (greater than 30 m) with lighting mounted at the top."
-                            icon="img/high_mast.svg"
-                            icon_size="24"/>
+                            icon="icons/svg/high_mast.svg"
+                            icon_size="30"/>
                 <list_entry value="suspended" display_value="Suspended"
                             short_description="The light is suspended over the street by a wire."
-                            icon="suspended_light.svg"
-                            icon_size="24"/>
+                            icon="icons/svg/suspended_light.svg"
+                            icon_size="30"/>
                 <list_entry value="wall" display_value="Wall"
                             short_description="The light is attached to a wall."
-                            icon="img/wall_mounted_light.svg"
-                            icon_size="24"/>
+                            icon="icons/svg/wall_mounted_light.svg"
+                            icon_size="30"/>
             </combo>
 
             <!-- Extra Tags -->

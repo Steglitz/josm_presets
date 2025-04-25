@@ -1,0 +1,225 @@
+plugins {
+    id 'base'
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    presetUtils
+}
+
+dependencies {
+    presetUtils 'ch.poole:preset-utils:0.27.2'
+}
+
+def presets = project.hasProperty('presets') ? project.presets.split(',') : ['bicycle_parking']
+def vespucci_preset_version = project.hasProperty('vespucciVersion') ? project.vespucciVersion : '1.14'
+def github_token = project.hasProperty('githubToken') ? project.githubToken : ''
+def github_user = project.hasProperty('githubUser') ? project.githubUser : 'yourusername'
+def github_repo = project.hasProperty('githubRepo') ? project.githubRepo : 'your-repo-name'
+
+def extractVersionFromXml(File xmlFile) {
+    def versionMatch = xmlFile.text =~ /<presets[^>]*version="([^"]+)"/
+    return versionMatch ? versionMatch[0][1] : 'unspecified'
+}
+
+def xmlDir = "$buildDir/xml"
+def tempDir = "$buildDir/temp"
+def genDir = "$projectDir/gen"
+
+def presetUtilsFile = configurations.presetUtils.resolvedConfiguration.resolvedArtifacts.find {
+    it.moduleVersion.id.name == 'preset-utils'
+}.file
+
+presets.each { presetName ->
+
+    def presetRoot = "$projectDir/presets/${presetName}"
+    def presetFile = file("$presetRoot/preset.xml")
+    def version = extractVersionFromXml(presetFile)
+    def presetGenDir = "$genDir/${presetName}"
+    def josmPresetFile = "$presetGenDir/${presetName}-josm-${version}.xml"
+    def vespucciPresetFile = "$presetGenDir/${presetName}-${version}.xml"
+
+    tasks.register("copyCss_${presetName}", Copy) {
+        from(zipTree(presetUtilsFile)) {
+            include "preset.css"
+        }
+        into "$projectDir/website"
+    }
+
+    tasks.register("copyResources_${presetName}", Copy) {
+        from(zipTree(presetUtilsFile)) {
+            include "josm-preset-1.0.xlmns",
+                    "vespucci-preset-${vespucci_preset_version}.xlmns",
+                    "toJOSM.xslt",
+                    "href2wiki.xslt",
+                    "wiki2href.xslt"
+            eachFile {
+                if (it.name == "josm-preset-1.0.xlmns") {
+                    it.name = "josm-preset-1.0.xsd"
+                }
+                if (it.name == "vespucci-preset-${vespucci_preset_version}.xlmns") {
+                    it.name = "vespucci-preset-${vespucci_preset_version}.xsd"
+                }
+            }
+        }
+        into xmlDir
+        includeEmptyDirs = false
+
+        doLast {
+            def expectedFile = file("$xmlDir/josm-preset-1.0.xsd")
+            if (!expectedFile.exists()) {
+                throw new GradleException("Expected josm-preset-1.0.xsd to be copied into $xmlDir but it wasn't found.")
+            }
+        }
+    }
+
+    tasks.register("transformToJosm_${presetName}", Exec) {
+        dependsOn "copyResources_${presetName}"
+        def outputFile = file(josmPresetFile)
+        doFirst {
+            outputFile.parentFile.mkdirs()
+            standardOutput = new FileOutputStream(outputFile)
+        }
+        commandLine = ["xmlstarlet", "tr", "$xmlDir/toJOSM.xslt", presetFile.absolutePath]
+    }
+
+    tasks.register("generateAndValidateJosm_${presetName}", Exec) {
+        dependsOn "transformToJosm_${presetName}", "copyResources_${presetName}"
+        mustRunAfter "copyResources_${presetName}"
+
+        doFirst {
+            def schemaFile = file("$xmlDir/josm-preset-1.0.xsd")
+            if (!schemaFile.exists()) {
+                throw new GradleException("JOSM schema not found at ${schemaFile}")
+            }
+        }
+
+        commandLine = ["xmlstarlet", "val", "-s", file("$xmlDir/josm-preset-1.0.xsd").toURI().toString(), "-e", josmPresetFile]
+    }
+
+    tasks.register("copyPresetForVespucci_${presetName}", Copy) {
+        dependsOn "copyResources_${presetName}"
+        outputs.file(vespucciPresetFile)
+        from presetFile
+        into presetGenDir
+        rename { String fileName -> "${presetName}-${version}.xml" }
+    }
+
+    tasks.register("generateAndValidateVespucci_${presetName}", Exec) {
+        dependsOn "copyPresetForVespucci_${presetName}"
+        mustRunAfter "copyPresetForVespucci_${presetName}"
+
+        doFirst {
+            def inputFile = file(vespucciPresetFile)
+            if (!inputFile.exists()) {
+                throw new GradleException("Vespucci preset file not found: ${inputFile}")
+            }
+        }
+
+        commandLine = ["xmlstarlet", "val", "-s", file("$xmlDir/vespucci-preset-${vespucci_preset_version}.xsd").toURI().toString(), "-e", vespucciPresetFile]
+    }
+
+    tasks.register("josmZip_${presetName}", Zip) {
+        dependsOn "generateAndValidateJosm_${presetName}", "generateAndValidateVespucci_${presetName}"
+        archiveBaseName.set("${presetName}-josm-${version}")
+        destinationDirectory.set(file(genDir))
+        from(presetGenDir) {
+            include "${presetName}-josm-${version}.xml"
+        }
+        if (file("$presetRoot/icons").exists()) from("$presetRoot/icons")
+        if (file("$presetRoot/images").exists()) from("$presetRoot/images")
+    }
+
+    tasks.register("vespucciZip_${presetName}", Zip) {
+        dependsOn "generateAndValidateVespucci_${presetName}"
+        archiveBaseName.set("${presetName}-${version}")
+        destinationDirectory.set(file(genDir))
+        from(presetGenDir) {
+            include "${presetName}-${version}.xml"
+        }
+        if (file("$presetRoot/icons").exists()) from("$presetRoot/icons")
+        if (file("$presetRoot/images").exists()) from("$presetRoot/images")
+        if (file("i18n").exists()) {
+            from("i18n") {
+                exclude("*.pot")
+            }
+        }
+    }
+
+    tasks.named("build") {
+        dependsOn "josmZip_${presetName}", "vespucciZip_${presetName}", "generateIndexHtml"
+    }
+}
+
+tasks.register("generateIndexHtml") {
+    def output = file("$projectDir/index.html")
+    doLast {
+        def html = new StringBuilder()
+        html << """<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=\"http://www.w3.org/1999/xhtml\">
+<head>
+    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/>
+    <link rel=\"stylesheet\" href=\"website/preset.css\" type=\"text/css\" />
+    <title>OSM Preset Downloads</title>
+</head>
+<body>
+<h1>OSM Preset Downloads for Vespucci and JOSM</h1>
+"""
+
+        presets.each { name ->
+            def encodedName = name.replaceAll(" ", "%20")
+            def presetFile = file("$projectDir/presets/${name}/preset.xml")
+            def version = extractVersionFromXml(presetFile)
+            html << """
+<div class=\"download\">
+    <h2>${name}</h2>
+    <a href=\"vespucci:/preset?preseturl=https://github.com/${github_user}/${github_repo}/raw/gh-pages/gen/${encodedName}-${version}.zip&presetname=${name}\">Download for Vespucci</a><br/>
+    <a href=\"https://github.com/${github_user}/${github_repo}/raw/gh-pages/gen/${encodedName}-josm-${version}.zip\">Download for JOSM</a>
+</div>
+"""
+        }
+
+        html << """
+<div class=\"footer\">Page generated by Gradle • ${new Date()}</div>
+</body>
+</html>"""
+
+        output.text = html.toString()
+    }
+}
+
+tasks.named('clean') {
+    doFirst {
+        def activePresetNames = presets as Set
+
+        // Clean XML schemas
+        def xmlSchemaDir = file(xmlDir)
+        if (xmlSchemaDir.exists()) {
+            println "Cleaning XML schema directory: $xmlSchemaDir"
+            xmlSchemaDir.deleteDir()
+        }
+
+        // Only clean files for currently selected presets
+        activePresetNames.each { preset ->
+            def presetGenDir = file("$genDir/$preset")
+            if (presetGenDir.exists()) {
+                println "Cleaning gen output for active preset: ${preset}"
+                presetGenDir.deleteDir()
+            }
+
+            // Remove old zip files for this preset
+            file(genDir).listFiles(new FilenameFilter() {
+                boolean accept(File dir, String name) {
+                    return name.startsWith("${preset}-") || name.startsWith("${preset}_")
+                }
+            })?.each {
+                println "Deleting zip for active preset: ${it.name}"
+                it.delete()
+            }
+        }
+    }
+}

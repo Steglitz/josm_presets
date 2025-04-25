@@ -1,0 +1,17 @@
+# gradle.properties-template
+
+# Comma-separated list of preset names (no spaces!) (e.g., bicycle_parking,streetlamps)
+# Each must have a corresponding XML file in presets/
+# Example: 'presets/bicycle_parking.xml' and 'presets/street_lamps.xml'
+presets=
+
+# Vespucci XML schema version used for validation (can leave as default unless upgrading schema)
+vespucciVersion=1.14
+
+# GitHub username and repo (used in index.html links)
+githubUser=
+githubRepo=
+
+# GitHub token used for GitHub Releases (optional)
+# This is only needed if you plan to use the githubRelease task
+githubToken=
