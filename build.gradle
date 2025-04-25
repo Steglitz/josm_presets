@@ -151,6 +151,7 @@ presets.each { presetName ->
 
     tasks.named("build") {
         dependsOn "josmZip_${presetName}", "vespucciZip_${presetName}", "generateIndexHtml"
+        finalizedBy "updateReadmeWithDownloads"
     }
 }
 
@@ -191,6 +192,67 @@ tasks.register("generateIndexHtml") {
         output.text = html.toString()
     }
 }
+
+tasks.register("updateReadmeWithDownloads") {
+    def readmeFile = file("$projectDir/README.md")
+    def markerStart = "<!-- preset-start -->"
+    def markerEnd = "<!-- preset-end -->"
+
+    doLast {
+        if (!readmeFile.exists()) {
+            println "README.md not found. Skipping update."
+            return
+        }
+
+        def before = []
+        def after = []
+        def inside = false
+        def inSection = false
+
+        readmeFile.eachLine { line ->
+            if (line.contains(markerStart)) {
+                inSection = true
+                before << line
+                inside = true
+            } else if (line.contains(markerEnd)) {
+                after << line
+                inside = false
+            } else {
+                if (!inside) {
+                    if (!inSection) {
+                        before << line
+                    } else {
+                        after << line
+                    }
+                }
+            }
+        }
+
+        def output = new StringBuilder()
+        before.each { output << it + "\n" }
+
+        // Generated content
+        output << "\n"
+        output << "### 🔽 Preset Downloads\n\n"
+        presets.each { name ->
+            def encodedName = name.replaceAll(" ", "%20")
+            def presetFile = file("$projectDir/presets/${name}/preset.xml")
+            def version = extractVersionFromXml(presetFile)
+
+            output << "#### ${name}\n"
+            output << "- [Vespucci](https://github.com/${github_user}/${github_repo}/raw/gh-pages/gen/${encodedName}-${version}.zip)\n"
+            output << "- [JOSM](https://github.com/${github_user}/${github_repo}/raw/gh-pages/gen/${encodedName}-josm-${version}.zip)\n\n"
+        }
+
+        output << "\n"
+        after.each { output << it + "\n" }
+
+        readmeFile.text = output.toString().trim() + "\n"
+        println "README.md updated with latest preset download links."
+    }
+}
+
+
 
 tasks.named('clean') {
     doFirst {
