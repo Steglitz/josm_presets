@@ -196,8 +196,9 @@ tasks.register("generateIndexHtml") {
             html << """
 <div class=\"download\">
     <h2>${name}</h2>
-    <a href=\"vespucci:/preset?preseturl=https://github.com/${github_user}/${github_repo}/raw/gh-pages/gen/${encodedName}-${version}.zip&presetname=${name}\">Download for Vespucci</a><br/>
-    <a href=\"https://github.com/${github_user}/${github_repo}/raw/gh-pages/gen/${encodedName}-josm-${version}.zip\">Download for JOSM</a>
+    <a href=\"vespucci:/preset?preseturl=https://github
+    .com/${github_user}/${github_repo}/raw/gh-pages/gen/${encodedName}_preset.zip&presetname=${name}\">Download for Vespucci</a><br/>
+    <a href=\"https://github.com/${github_user}/${github_repo}/raw/gh-pages/gen/${encodedName}-josm_preset.zip\">Download for JOSM</a>
 </div>
 """
         }
@@ -258,8 +259,8 @@ tasks.register("updateReadmeWithDownloads") {
             def version = extractVersionFromXml(presetFile)
 
             output << "## ${name}\n"
-            output << "- [Vespucci](https://github.com/${github_user}/${github_repo}/raw/gh-pages/gen/${encodedName}-${version}.zip)\n"
-            output << "- [JOSM](https://github.com/${github_user}/${github_repo}/raw/gh-pages/gen/${encodedName}-josm-${version}.zip)\n\n"
+            output << "- [Vespucci](https://github.com/${github_user}/${github_repo}/raw/gh-pages/gen/${encodedName}_preset.zip)\n"
+            output << "- [JOSM](https://github.com/${github_user}/${github_repo}/raw/gh-pages/gen/${encodedName}-josm_preset.zip)\n\n"
         }
 
         output << "\n"

@@ -8,12 +8,12 @@ A list of presets for use in JOSM or Vespucci. The links to the current download
 # 🔽 Preset Downloads
 
 ## street_lamps
-- [Vespucci](https://github.com/steglitz/josm_presets/raw/gh-pages/gen/street_lamps-1.0.0.zip)
-- [JOSM](https://github.com/steglitz/josm_presets/raw/gh-pages/gen/street_lamps-josm-1.0.0.zip)
+- [Vespucci](https://github.com/steglitz/josm_presets/raw/gh-pages/gen/street_lamps_preset.zip)
+- [JOSM](https://github.com/steglitz/josm_presets/raw/gh-pages/gen/street_lamps-josm_preset.zip)
 
 ## single_trees
-- [Vespucci](https://github.com/steglitz/josm_presets/raw/gh-pages/gen/single_trees-0.1.0.zip)
-- [JOSM](https://github.com/steglitz/josm_presets/raw/gh-pages/gen/single_trees-josm-0.1.0.zip)
+- [Vespucci](https://github.com/steglitz/josm_presets/raw/gh-pages/gen/single_trees_preset.zip)
+- [JOSM](https://github.com/steglitz/josm_presets/raw/gh-pages/gen/single_trees-josm_preset.zip)
 
 
 <!-- preset-end -->
