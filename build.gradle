@@ -124,30 +124,48 @@ presets.each { presetName ->
 
     tasks.register("josmZip_${presetName}", Zip) {
         dependsOn "generateAndValidateJosm_${presetName}", "generateAndValidateVespucci_${presetName}"
-        archiveBaseName.set("${presetName}-josm-${version}")
+        archiveBaseName.set("${presetName}-josm_preset")
         destinationDirectory.set(file(genDir))
         from(presetGenDir) {
             include "${presetName}-josm-${version}.xml"
         }
-        if (file("$presetRoot/icons").exists()) from("$presetRoot/icons")
-        if (file("$presetRoot/images").exists()) from("$presetRoot/images")
+        if (file("$presetRoot/icons").exists()) {
+            from("$presetRoot/icons") {
+                into "icons"
+            }
+        }
+        if (file("$presetRoot/images").exists()) {
+            from("$presetRoot/images") {
+                into "images"
+            }
+        }
     }
+
 
     tasks.register("vespucciZip_${presetName}", Zip) {
         dependsOn "generateAndValidateVespucci_${presetName}"
-        archiveBaseName.set("${presetName}-${version}")
+        archiveBaseName.set("${presetName}_preset")
         destinationDirectory.set(file(genDir))
         from(presetGenDir) {
             include "${presetName}-${version}.xml"
         }
-        if (file("$presetRoot/icons").exists()) from("$presetRoot/icons")
-        if (file("$presetRoot/images").exists()) from("$presetRoot/images")
+        if (file("$presetRoot/icons").exists()) {
+            from("$presetRoot/icons") {
+                into "icons"
+            }
+        }
+        if (file("$presetRoot/images").exists()) {
+            from("$presetRoot/images") {
+                into "images"
+            }
+        }
         if (file("i18n").exists()) {
             from("i18n") {
                 exclude("*.pot")
             }
         }
     }
+
 
     tasks.named("build") {
         dependsOn "josmZip_${presetName}", "vespucciZip_${presetName}", "generateIndexHtml"
@@ -233,13 +251,13 @@ tasks.register("updateReadmeWithDownloads") {
 
         // Generated content
         output << "\n"
-        output << "### 🔽 Preset Downloads\n\n"
+        output << "# 🔽 Preset Downloads\n\n"
         presets.each { name ->
             def encodedName = name.replaceAll(" ", "%20")
             def presetFile = file("$projectDir/presets/${name}/preset.xml")
             def version = extractVersionFromXml(presetFile)
 
-            output << "#### ${name}\n"
+            output << "## ${name}\n"
             output << "- [Vespucci](https://github.com/${github_user}/${github_repo}/raw/gh-pages/gen/${encodedName}-${version}.zip)\n"
             output << "- [JOSM](https://github.com/${github_user}/${github_repo}/raw/gh-pages/gen/${encodedName}-josm-${version}.zip)\n\n"
         }

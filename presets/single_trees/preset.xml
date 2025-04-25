@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<presets
+        xmlns="http://josm.openstreetmap.de/tagging-preset-1.0"
+        version="0.1.0"
+        author="Steglitz"
+        description="Single trees, mapped as nodes."
+        shortdescription="Single Trees">
+
+    <item name="Single Tree" icon="icons/tree.svg" type="node" preset_name_label="true">
+        <link wiki="Tag:natural=tree" />
+        <space />
+        <key key="natural" value="tree" />
+
+        <label text="Basic Attributes" />
+        <combo key="leaf_type" text="Leave Type"
+               values="broadleaved,needleleaved"
+               values_context="leaf_type" match="key" values_sort="false"/>
+        <combo key="leaf_cycle" text="Leaf Cycle"
+               values="deciduous,evergreen,semi_deciduous,semi_evergreen"
+               values_context="leaf_cycle" match="key" values_sort="false"/>
+
+        <!-- Measurable Attribues -->
+        <label text="Measureable Attributes" />
+        <text key="circumference" text="Trunk Circumference at 1,3m (in meters)" />
+        <text key="diameter" text="Trunk Diameter at 1,3m (in meters)" />
+        <text key="height" text="Tree height (in meters)" />
+        <combo key="source:height" text="Height Source"
+               values="survey,lidar,shadow,satellite_imagery,estimated"
+               values_context="source:height" match="key" values_sort="false"/>
+
+        <text key="diameter:crown" text="Crown Diameter" />
+
+        <label text="Scientific Naming" />
+        <text key="species" text="Species" />
+
+
+        <label text="Planting and Commemoration" />
+        <text key="planted_by" text="Planted byr" />
+        <text key="planted_date" text="Planted Date (YYYY-MM-DD)" />
+        <text key="commemorates" text="Commemorates" />
+    </item>
+</presets>

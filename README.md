@@ -11,6 +11,11 @@ A list of presets for use in JOSM or Vespucci. The links to the current download
 - [Vespucci](https://github.com/steglitz/josm_presets/raw/gh-pages/gen/street_lamps-1.0.0.zip)
 - [JOSM](https://github.com/steglitz/josm_presets/raw/gh-pages/gen/street_lamps-josm-1.0.0.zip)
 
+## single_trees
+- [Vespucci](https://github.com/steglitz/josm_presets/raw/gh-pages/gen/single_trees-0.1.0.zip)
+- [JOSM](https://github.com/steglitz/josm_presets/raw/gh-pages/gen/single_trees-josm-0.1.0.zip)
+
+
 <!-- preset-end -->
 # Using this repository
 To use this repository, you need to install and add the following to your PATH:
@@ -45,4 +50,4 @@ Add presets in JOSM by selecting `Images > Preset Preferences` and then adding t
 
 ## Vespucci
 You can add presets in Vespucci by selecting `Settings > Presets > Add preset`. Give the preset a name
-and add the RAW link. Activate the preset with the checkbox and start using it. 
+and add the RAW link. Activate the preset with the checkbox and start using it.
